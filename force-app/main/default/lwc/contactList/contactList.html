@@ -1,0 +1,37 @@
+<template>
+        <lightning-card title="ApexWireMethodWithParams" icon-name="custom:custom63">
+                <div class="slds-m-around_medium">
+                    <lightning-input type="search" onchange={handleKeyChange} class="slds-m-bottom_small" label="Search" value={searchKey}></lightning-input>
+                    <template if:true={contacts.data}>
+                        <template for:each={contacts.data} for:item="contact">
+                            <p key={contact.Id}>{contact.Name}</p>
+                        </template>
+                    </template>
+                    <template if:true={contacts.error}>
+                        <c-error-panel errors={contacts.error}></c-error-panel>
+                    </template>
+                </div>
+            </lightning-card>    
+    <lightning-card title="Contact List Collection" icon-name="custom:custom14">
+        <ul class="slds-list_ordered">
+        <template for:each={contacts.data} for:item="contact">
+            <li key={contact.Id}>
+                <!-- {contact.FirstName}  {contact.LastName} -->
+            </li>       
+            <lightning-record-view-form  key={contact.Id} record-id={contact.Id} object-api-name="Contact">
+                        <div class="slds-box">
+                                <lightning-output-field field-name="FirstName">
+                                </lightning-output-field>
+                                <lightning-output-field field-name="LastName">
+                                </lightning-output-field>
+                                <lightning-output-field field-name="MobilePhone">
+                                </lightning-output-field>
+                                <lightning-output-field field-name="Email">
+                                </lightning-output-field>
+                            </div>
+                    </lightning-record-view-form>
+          
+        </template>
+        </ul>
+    </lightning-card>
+    </template>

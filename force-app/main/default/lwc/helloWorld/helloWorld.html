@@ -1,0 +1,24 @@
+<template>
+<lightning-card title="Contact Collection" icon-name="custom:custom14">
+    <ul class="slds-list_ordered">
+    <template for:each={contacts.data} for:item="contact">
+        <li key={contact.Id}>
+            <!-- {contact.FirstName}  {contact.LastName} -->
+        </li>       
+        <lightning-record-view-form  key={contact.Id} record-id={contact.Id} object-api-name="Contact">
+                    <div class="slds-box">
+                            <lightning-output-field field-name="FirstName">
+                            </lightning-output-field>
+                            <lightning-output-field field-name="LastName">
+                            </lightning-output-field>
+                            <lightning-output-field field-name="MobilePhone">
+                            </lightning-output-field>
+                            <lightning-output-field field-name="Email">
+                            </lightning-output-field>
+                        </div>
+                </lightning-record-view-form>
+      
+    </template>
+    </ul>
+</lightning-card>
+</template>
