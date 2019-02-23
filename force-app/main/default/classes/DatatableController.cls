@@ -20,6 +20,13 @@ public with sharing class DatatableController {
         
         List<Contact> contacts = [SELECT Id, Name, FirstName,LastName,Title, Phone, Email FROM Contact  LIMIT 40];
         
+        for (Integer ii=0; ii < 2000;ii++) {
+            ContactShadow  cs= new ContactShadow();
+            cs.name='NAME-' + ii;
+            cs.FirstName = 'FNAME' + ii;
+            cs.LastName ='LNAME' + ii;       
+            shadowList.add(cs);
+        }
         for (Contact c: contacts) {
             ContactShadow  cs= new ContactShadow();
             cs.name=c.Name;
@@ -28,6 +35,7 @@ public with sharing class DatatableController {
             shadowList.add(cs);
         }
         
+
         ContactShadowResponse resp = new ContactShadowResponse();
         resp.values = shadowList;
         List<ContactShadowColumn> columns = new List<ContactShadowColumn>();
