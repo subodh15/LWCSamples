@@ -36,11 +36,10 @@ export default class LwcdataTable extends LightningElement {
         error,
         data
     }) {
-        console.log('wiredOpps-WORKING ?');
-        console.log('' + data);
         if (data) {
+            console.log('wiredOpps-WORKING ?');
             this.contactdata = data;
-           // console.log(data);
+            console.log(this.contactdata);
            // console.log(JSON.stringify(data, null, '\t'));
         } else if (error) {
             this.error = error;
@@ -52,12 +51,13 @@ export default class LwcdataTable extends LightningElement {
         error,
         data
     }) {
-        console.log('wiredShadow');
-        console.log(data);
         if (data) {
+            console.log('wiredShadow-Data');
+            console.log('Size of Values returned:' + data.values.length);
+            console.log('Size of Columns returned:' + data.columns.length);
             this.values = data.values;
             this.columns = data.columns;
-            console.log(data);
+           
            // console.log(JSON.stringify(data, null, '\t'));
         } else if (error) {
             this.error = error;

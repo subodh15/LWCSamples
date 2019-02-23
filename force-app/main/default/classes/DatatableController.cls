@@ -14,12 +14,23 @@ public with sharing class DatatableController {
         dd.FirstName = 'My Phirst Name';
         dd.LastName = 'My Lasht Naame';
         dd.myID = 0;
-        List<ContactShadow> myList = new List<ContactShadow>();
-        myList.add(dd);
-		
+        List<ContactShadow> shadowList = new List<ContactShadow>();
+        
+        shadowList.add(dd);
+        
+        List<Contact> contacts = [SELECT Id, Name, FirstName,LastName,Title, Phone, Email FROM Contact  LIMIT 40];
+        
+        for (Contact c: contacts) {
+            ContactShadow  cs= new ContactShadow();
+            cs.name=c.Name;
+            cs.FirstName = c.FirstName;
+            cs.LastName = c.LastName;            
+            shadowList.add(cs);
+        }
+        
         ContactShadowResponse resp = new ContactShadowResponse();
-        resp.values = myList;
-		List<ContactShadowColumn> columns = new List<ContactShadowColumn>();
+        resp.values = shadowList;
+        List<ContactShadowColumn> columns = new List<ContactShadowColumn>();
         String [] fields = new String[] {'name', 'FirstName', 'LastName', 'myId'};
         for (integer i=0; i < fields.size(); i++) {
             ContactShadowColumn cl = new ContactShadowColumn();
@@ -36,20 +47,20 @@ public with sharing class DatatableController {
     } 
 
     public class ContactShadowResponse {
-		@AuraEnabled public List<ContactShadow> values {get;set;}
-		@AuraEnabled public List<ContactShadowColumn> columns {get;set;}
-	}
+        @AuraEnabled public List<ContactShadow> values {get;set;}
+        @AuraEnabled public List<ContactShadowColumn> columns {get;set;}
+    }
     public class ContactShadow {
-		@AuraEnabled public String name {get;set;}
-		@AuraEnabled public String FirstName {get;set;}
-		@AuraEnabled public List<String> columns {get;set;} 
+        @AuraEnabled public String name {get;set;}
+        @AuraEnabled public String FirstName {get;set;}
+        @AuraEnabled public List<String> columns {get;set;} 
         @AuraEnabled public String LastName {get;set;}
         @AuraEnabled public Integer myId {get;set;}
-	}
+    }
     public class ContactShadowColumn {
-		@AuraEnabled public String label {get;set;}
-		@AuraEnabled public String fieldName {get;set;}
-		@AuraEnabled public String type {get;set;}
-		@AuraEnabled public boolean sortable {get;set;}
-	}    
+        @AuraEnabled public String label {get;set;}
+        @AuraEnabled public String fieldName {get;set;}
+        @AuraEnabled public String type {get;set;}
+        @AuraEnabled public boolean sortable {get;set;}
+    }    
 }
