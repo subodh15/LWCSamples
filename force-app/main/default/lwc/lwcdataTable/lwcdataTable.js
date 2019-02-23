@@ -6,20 +6,20 @@ import getShadowObjects from '@salesforce/apex/DatatableController.getShadowObje
 
 export default class LwcdataTable extends LightningElement {
 
-    @track columns1 = [{
-        label: 'Shadow name',
+    @track contactcolumns = [{
+        label: 'Contact name',
         fieldName: 'Name',
         type: 'text',
         sortable: true
     },
     {
-        label: 'First Name',
+        label: 'Contact First Name',
         fieldName: 'FirstName',
         type: 'text',
         sortable: true
     },
     {
-        label: 'Last date',
+        label: 'Contact LastName',
         fieldName: 'LastName',
         type: 'text',
         sortable: true
