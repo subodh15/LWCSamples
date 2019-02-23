@@ -23,8 +23,34 @@ export default class LwcdataTable extends LightningElement {
         }
 
     ];
+
+    @track columns1 = [{
+        label: 'Shadow name',
+        fieldName: 'Name',
+        type: 'text',
+        sortable: true
+    },
+    {
+        label: 'First Name',
+        fieldName: 'FirstName',
+        type: 'text',
+        sortable: true
+    },
+    {
+        label: 'Last date',
+        fieldName: 'LastName',
+        type: 'text',
+        sortable: true
+    }
+
+];
+
+
     @track error; 
     @track data ;
+    @track mycolumns ;
+    @track values;
+
     @wire(getAllOpps)
     wiredOpps({
         error,
@@ -42,10 +68,11 @@ export default class LwcdataTable extends LightningElement {
     @wire(getShadowObjects)
     wiredShadow({
         error,
-        data
+        data1
     }) {
-        if (data) {
-            this.data = data;
+        if (data1) {
+            this.values = data1.values;
+            this.mycolumns = data1.columns;
            // console.log(data);
            // console.log(JSON.stringify(data, null, '\t'));
         } else if (error) {
