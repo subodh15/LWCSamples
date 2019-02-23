@@ -16,17 +16,22 @@ public with sharing class DatatableController {
         dd.myID = 0;
         List<ContactShadow> myList = new List<ContactShadow>();
         myList.add(dd);
-		System.debug(myList);
-
+		
         ContactShadowResponse resp = new ContactShadowResponse();
         resp.values = myList;
-
+		List<ContactShadowColumn> columns = new List<ContactShadowColumn>();
         String [] fields = new String[] {'name', 'FirstName', 'LastName', 'myId'};
         for (integer i=0; i < fields.size(); i++) {
             ContactShadowColumn cl = new ContactShadowColumn();
             cl.label = fields[i] + ':' + i;
             cl.fieldName = fields[i];
+            cl.sortable = true;
+            cl.type = 'text';
+            columns.add(cl);
         }
+        resp.columns= columns;
+        System.debug(resp);
+
         return resp;
     } 
 

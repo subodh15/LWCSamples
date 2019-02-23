@@ -1,5 +1,11 @@
 <template>
-    <h2> Data table Example -1.1</h2>
-    <lightning-datatable data={data1} columns={columns1} key-field="myId">
+    <h1>NOT - WORKING - Contacts - 1</h1>
+    <lightning-datatable data={values} columns={mycolumns} key-field='Id'>
     </lightning-datatable>
+    <h1>WORKING - Contacts - 2</h1>
+    <lightning-datatable data={contactdata} columns={columns1} key-field='Id'>
+    </lightning-datatable>   
+    <h1>NOT WORKING - Contacts - 3</h1>
+    <lightning-datatable data={values} columns={mycolumns} key-field="Id">
+    </lightning-datatable>    
 </template>
