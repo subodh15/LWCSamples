@@ -1,5 +1,6 @@
 import { LightningElement ,wire,track} from 'lwc';
 import getAllOpps from '@salesforce/apex/DatatableController.getAllOpps';
+import getShadowObjects from '@salesforce/apex/DatatableController.getShadowObjects';
 
 export default class LwcdataTable extends LightningElement {
     @track columns = [{
@@ -26,6 +27,20 @@ export default class LwcdataTable extends LightningElement {
     @track data ;
     @wire(getAllOpps)
     wiredOpps({
+        error,
+        data
+    }) {
+        if (data) {
+            this.data = data;
+           // console.log(data);
+           // console.log(JSON.stringify(data, null, '\t'));
+        } else if (error) {
+            this.error = error;
+        }
+    }
+
+    @wire(getShadowObjects)
+    wiredShadow({
         error,
         data
     }) {
